@@ -7,13 +7,21 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'mvn --version'
+              sh 'make'
+              archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'make check || true'
+                junit '**/target/*.xml'
             }
         }
     }
     post{
       always {
-        junit "target/surefire-reports/*xml"
+          archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+          junit 'build/reports/**/*.xml'
       }
     }
 }
