@@ -17,12 +17,8 @@ pipeline {
                 }
     }
     post{
-    success {
-                     echo 'whole pipeline successful'
-                 }
-                 failure {
-                     echo 'pipeline failed, at least one step failed'
-                 }
-
+      always {
+        junit 'target/generated-test-sources/test-annotations/*.xml'
+      }
     }
 }
