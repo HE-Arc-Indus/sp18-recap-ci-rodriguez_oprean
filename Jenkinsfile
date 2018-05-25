@@ -7,21 +7,18 @@ pipeline {
     stages {
         stage('build') {
             steps {
-              sh 'make'
-              archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+                sh 'mvn --version'
             }
         }
         stage('Test') {
-            steps {
-                sh 'make check || true'
-                junit '**/target/*.xml'
-            }
+          steps {
+            sh 'mvn test'
+          }
         }
     }
     post{
       always {
-          archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-          junit 'build/reports/**/*.xml'
+        junit "target/generated-test-sources/test-annotations/*.xml"
       }
     }
 }
