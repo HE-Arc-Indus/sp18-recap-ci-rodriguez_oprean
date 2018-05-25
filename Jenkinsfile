@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-            maven 'Maven'
+            maven 'maven'
             jdk 'jdk8'
         }
     stages {
@@ -10,5 +10,10 @@ pipeline {
                 sh 'mvn --version'
             }
         }
+    }
+    post{
+      always {
+        junit "target/surefire-reports/*xml"
+      }
     }
 }

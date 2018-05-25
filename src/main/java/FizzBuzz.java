@@ -1,14 +1,14 @@
 public class FizzBuzz {
 
-  public FizzBuzz() {
-  }
-
-  public int[] cheatSheet() {
-    int[] maListe = new int[100];
-    for (int i = 1; i <= 100; i++) {
-      maListe[i - 1] = i;
+  public static String getResult(int number) {
+    if (number % 15 == 0) {
+      return "fizzbuzz";
+    } else if (number % 3 == 0) {
+      return "fizz";
+    } else if (number % 5 == 0) {
+      return "buzz";
     }
-    return maListe;
+    return Integer.toString(number);
   }
-
 }
+
