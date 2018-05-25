@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Test') {
                     steps {
-                        echo 'Testing..'
+                        sh 'mvn test'
                     }
                 }
     }
@@ -23,6 +23,6 @@ pipeline {
                  failure {
                      echo 'pipeline failed, at least one step failed'
                  }
-      
+
     }
 }
